@@ -1,0 +1,91 @@
+#autorization {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+#body_auto {
+    display: flex;
+    width: 300px;
+    padding: 40px 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px 0px rgba(44, 57, 121, 0.09);
+    justify-content: center
+}
+
+div#logo img {
+    height: 132px;
+}
+
+#exit_game {
+    color: #434a54;
+    text-align: center;
+
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+input.login {
+    resize: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #DCDCDF;
+    border-radius: 12px;
+    letter-spacing: 0.24px;
+    padding: 12px 20px;
+    gap: 8px;
+    margin-bottom: -8px;
+}
+
+input.password {
+    resize: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #DCDCDF;
+    border-radius: 12px;
+    letter-spacing: 0.24px;
+    padding: 12px 20px;
+    gap: 8px;
+}
+
+button.exit {
+    display: flex;
+    padding: 12px 80px;
+    justify-content: center;
+    gap: 8px;
+    color: var(--gray-white, #FFF);
+    align-self: stretch;
+    border-color: #5d9cec;
+    border-radius: 12px;
+    border-style: initial;
+    background: #5d9cec;
+    text-decoration: none;
+}
+
+button.exit:hover {
+    background-color: #967adc;
+}
+
+a.exit:active {
+    background-color: #ac92eb;
+}

@@ -7,7 +7,9 @@ const generateJwt = (login, role) => {
     return jwt.sign(
     {login, role}, 
     process.env.DB_TOKEN, 
-    {expiresIn: '8h'}
+    {
+        expiresIn: '9h'
+      }
     )
     }
 
@@ -70,7 +72,7 @@ class UserController{
     } 
     async login(req,res, next){
         const {login, passsword, role} = req.body
-        const user = await db.query('select login, passsword, role from users where login=$1', [req.body.login])
+        const user = await db.query('select * from users where login=$1', [req.body.login])
         if(!user.rows[0]){
             return next(ApiError.internal('Пользователь не найден'))
         }

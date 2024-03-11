@@ -1,0 +1,7 @@
+.modal-content {
+  padding: 20px;
+  border-radius: 16px;
+  background-color: rgba(212, 201, 239, 0.9);
+  transition: 0.8s all;
+}
+
