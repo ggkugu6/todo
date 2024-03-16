@@ -13,10 +13,12 @@ const TaskTable = observer(() => {
   const [sortedTasks, setSortedTasks] = useState([]);
   const [clickCount, setClickCount] = useState({});
   const sortedTodayTasks = SortToday();
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const defaultSorted = sortedTodayTasks.sort((a, b) => new Date(b['update_at']) - new Date(a['update_at']));
   const handleSort = (key) => {
     setClickCount(prevCount => ({ ...prevCount, [key]: (prevCount[key] || 1) + 1 }));
     let newSortedTasks;
-    
     if (clickCount[key] % 3 === 0) {
       newSortedTasks = sortedTodayTasks.sort((a, b) => new Date(b['update_at']) - new Date(a['update_at']));
     } else {
@@ -43,23 +45,16 @@ const TaskTable = observer(() => {
     setSortedTasks(newSortedTasks);
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
-  const defaultSorted = sortedTodayTasks.sort((a, b) => new Date(b['update_at']) - new Date(a['update_at']));
-  useEffect(() => {
-    
-    setSortedTasks(defaultSorted);
-    setModalShow(false);
-    setSelectedTask(null);
-    setClickCount({});
-    
-  }, [user.currentUser, user.user,  task.tasks, task.period]);
-
-  const [modalShow, setModalShow] = React.useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
   const handleRowClick = (data) => {
     setSelectedTask(data);
     setModalShow(true);
   };
-  
+  useEffect(() => {
+    setSortedTasks(defaultSorted);
+    setModalShow(false);
+    setSelectedTask(null);
+    setClickCount({});
+  }, [user.currentUser, user.user,  task.tasks, task.period]);
 
   return (
     <div id="body_main">

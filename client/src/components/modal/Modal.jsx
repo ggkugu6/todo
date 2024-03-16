@@ -58,7 +58,7 @@ const ModalFront = observer(({ show, tasks, onHide }) => {
           onHide={onHide}>
           <Modal.Header>
             <Modal.Title>
-              Создание Задачи
+              {tasks ? "Редактирование Задачи" : "Создание Задачи"}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -170,7 +170,12 @@ const ModalFront = observer(({ show, tasks, onHide }) => {
             <Button
               variant="outline-secondary"
               onClick={saveTask}
-              disabled={ title || status ? false : true}>
+              disabled={
+                tasks ?
+                  status || user.currentUser.role === 'ADMIN'? false : true
+                  :
+                  false
+              }>
               Сохранить
             </Button>
           </Modal.Footer>
