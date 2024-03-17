@@ -50,6 +50,7 @@ const ModalFront = observer(({ show, tasks, onHide }) => {
     }
 
   }
+console.log(title)
   return (
     <>
       <form>
@@ -69,7 +70,7 @@ const ModalFront = observer(({ show, tasks, onHide }) => {
                 controlId="exampleForm.ControlInput1"
                 className="mb-2">
                 <Form.Label>
-                  Заголовок
+                {"Заголовок"}
                 </Form.Label>
                 <Form.Control
                   defaultValue={tasks && tasks.title}
@@ -77,6 +78,7 @@ const ModalFront = observer(({ show, tasks, onHide }) => {
                   as="textarea"
                   placeholder="Заголовок..."
                   disabled={user.currentUser.role === 'ADMIN' ? false : true}
+                  variant="danger"
                   autoFocus
                 />
               </Form.Group>
@@ -172,9 +174,9 @@ const ModalFront = observer(({ show, tasks, onHide }) => {
               onClick={saveTask}
               disabled={
                 tasks ?
-                  status || user.currentUser.role === 'ADMIN'? false : true
+                  status || user.currentUser.role === 'ADMIN' ? false : true
                   :
-                  false
+                  title && userName && status ? false : true
               }>
               Сохранить
             </Button>

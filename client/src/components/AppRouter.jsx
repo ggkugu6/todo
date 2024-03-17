@@ -21,26 +21,29 @@ const AppRouter = observer(() => {
 
     return (
         <Routes>
-            {<Route
-                key={LOGIN_ROUTE}
-                path={LOGIN_ROUTE} element={localStorage.getItem('token') === null || isAuthorized === false ? <Auth /> : <MainTask />}
-            />}
-            {<Route
-                key={MAIN_ROUTE}
-                path={MAIN_ROUTE}
-                element={user.isAuth && localStorage.getItem('token') && isAuthorized === true ? <MainTask /> : <Auth />}
-            />}
-            {<Route
-                path="*"
-                element={user.isAuth && localStorage.getItem('token') && isAuthorized === true ?
-                    <Navigate
-                        to={MAIN_ROUTE}
-                    />
-                    :
-                    <Navigate
-                        to={LOGIN_ROUTE}
-                    />}
-            />}
+            {localStorage.getItem('token') === null || isAuthorized === false ? (
+                <Route
+                    key={LOGIN_ROUTE}
+                    path={LOGIN_ROUTE} element={<Auth />}
+                />
+            ) : (
+                <Route
+                    key={MAIN_ROUTE}
+                    path={MAIN_ROUTE}
+                    element={user.isAuth && isAuthorized ? <MainTask /> : <Auth />}
+                />
+            )}
+            {user.isAuth && localStorage.getItem('token') && isAuthorized ? (
+                <Route
+                    path="*"
+                    element={<Navigate to={MAIN_ROUTE} />}
+                />
+            ) : (
+                <Route
+                    path="*"
+                    element={<Navigate to={LOGIN_ROUTE} />}
+                />
+            )}
         </Routes>
     );
 });

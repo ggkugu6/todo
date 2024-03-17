@@ -10,6 +10,7 @@ export const registration = async (login, passsword) => {
 export const loginn = async (login, passsword) => {
     const {data} = await $authost.post('api/login', {login, passsword})
     localStorage.setItem('token', data.token)
+    console.log(data)
     return jwtDecode(data.token)
 }
 
@@ -27,4 +28,4 @@ export const getUser = async () => {
     const {data} = await $authost.get('api/user')
     return data
 }
-
+//console.log($authost.post())
